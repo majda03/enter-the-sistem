@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Courier New', monospace;
+  background-color: #0d0d0d;
+  color: #fff;
+  overflow-x: hidden;
+}
+
+.hero {
+  position: relative;
+  height: 100vh;
+  background-image: url('https://images.unsplash.com/photo-1604079628048-943dd703b1d2?auto=format&fit=crop&w=1470&q=80');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 1;
+}
+
+.glitch {
+  font-size: 4rem;
+  color: white;
+  position: relative;
+  z-index: 2;
+  text-transform: uppercase;
+  animation: glitch 2s infinite;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.glitch::before {
+  color: #f0f;
+  top: -2px;
+  animation: glitchTop 2s infinite;
+}
+
+.glitch::after {
+  color: #0ff;
+  top: 2px;
+  animation: glitchBottom 2s infinite;
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitchTop {
+  0%, 100% { clip-path: inset(0 0 80% 0); transform: translateX(0); }
+  50% { clip-path: inset(10% 0 70% 0); transform: translateX(-2px); }
+}
+
+@keyframes glitchBottom {
+  0%, 100% { clip-path: inset(80% 0 0 0); transform: translateX(0); }
+  50% { clip-path: inset(70% 0 10% 0); transform: translateX(2px); }
+}
+
+.reveal-section {
+  padding: 10vh 8vw;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1.2s ease;
+}
+
+.reveal-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  color: #00ffee;
+}
+
+.reveal-section p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+.glow-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: black;
+  color: #0ff;
+  border: 1px solid #0ff;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px #0ff;
+}
+
+.glow-button:hover {
+  background: #0ff;
+  color: black;
+  box-shadow: 0 0 20px #0ff, 0 0 40px #0ff;
+}
